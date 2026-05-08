@@ -26,3 +26,39 @@ data class BsParserResult(
         )
     }
 }
+
+/**
+ * In-memory representation of a parsed BattleScribe XML element. The whole
+ * `.gst`/`.cat` file is loaded into a tree of these nodes before extraction,
+ * which keeps the per-file parsing pass linear and the consumers simple.
+ */
+data class BsNode(
+    val tag: String,
+    val attrs: Map<String, String>,
+    val children: List<BsNode>,
+    val text: String,
+) {
+    fun child(tag: String): BsNode? = children.firstOrNull { it.tag == tag }
+    fun childrenWithTag(tag: String): List<BsNode> = children.filter { it.tag == tag }
+
+    /** Recursively flatten every descendant (including this node). */
+    fun walk(): Sequence<BsNode> = sequence {
+        yield(this@BsNode)
+        children.forEach { yieldAll(it.walk()) }
+    }
+}
+
+/** Result of parsing a `.gst` file. */
+data class GameSystemParseResult(
+    val coreStratagems: List<com.rosterforge.wh40k.domain.model.Stratagem>,
+    /** id → shared entry node, used by catalogue passes to resolve `<entryLink>`. */
+    val sharedEntries: Map<String, BsNode> = emptyMap(),
+)
+
+data class CatalogueParseResult(
+    val faction: com.rosterforge.wh40k.domain.model.Faction?,
+    val detachments: List<com.rosterforge.wh40k.domain.model.Detachment>,
+    val units: List<com.rosterforge.wh40k.domain.model.Unit>,
+    val enhancements: List<com.rosterforge.wh40k.domain.model.Enhancement>,
+    val stratagems: List<com.rosterforge.wh40k.domain.model.Stratagem>,
+)

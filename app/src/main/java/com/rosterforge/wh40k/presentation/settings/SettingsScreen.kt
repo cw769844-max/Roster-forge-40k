@@ -104,7 +104,7 @@ fun SettingsScreen(
                         modifier = Modifier.padding(end = 8.dp),
                     )
                 }
-                Text("Reset to sample data")
+                Text("Reload catalogue data")
             }
             SectionHeader("About")
             Text(

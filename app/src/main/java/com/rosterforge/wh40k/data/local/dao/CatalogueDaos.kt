@@ -23,6 +23,9 @@ interface FactionDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(factions: List<FactionEntity>)
 
+    @Query("SELECT COUNT(*) FROM factions")
+    suspend fun countAll(): Int
+
     @Query("DELETE FROM factions")
     suspend fun deleteAll()
 }

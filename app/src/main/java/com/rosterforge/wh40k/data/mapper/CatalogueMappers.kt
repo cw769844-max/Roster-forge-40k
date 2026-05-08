@@ -30,7 +30,7 @@ import com.rosterforge.wh40k.domain.model.ModelScope
 import com.rosterforge.wh40k.domain.model.PointsCost
 import com.rosterforge.wh40k.domain.model.Stratagem
 import com.rosterforge.wh40k.domain.model.StratagemType
-import com.rosterforge.wh40k.domain.model.Unit
+import com.rosterforge.wh40k.domain.model.Unit as DomainUnit
 import com.rosterforge.wh40k.domain.model.UnitStats
 import com.rosterforge.wh40k.domain.model.WargearChoice
 import com.rosterforge.wh40k.domain.model.WargearConstraints
@@ -130,7 +130,7 @@ fun Stratagem.toEntity(): StratagemEntity = StratagemEntity(
     flavor = flavor,
 )
 
-fun UnitEntity.toDomain(): Unit {
+fun UnitEntity.toDomain(): DomainUnit {
     val stats = AppJson.decodeFromString(UnitStatsDto.serializer(), statsJson).toDomain()
     val modelGroups = AppJson.decodeFromString(
         ListSerializer(ModelGroupDto.serializer()), modelGroupsJson,
@@ -150,7 +150,7 @@ fun UnitEntity.toDomain(): Unit {
     val leader = leaderAbilityJson?.let {
         AppJson.decodeFromString(LeaderAbilityDto.serializer(), it).toDomain()
     }
-    return Unit(
+    return DomainUnit(
         id = id,
         factionId = factionId,
         name = name,
@@ -172,7 +172,7 @@ fun UnitEntity.toDomain(): Unit {
     )
 }
 
-fun Unit.toEntity(): UnitEntity = UnitEntity(
+fun DomainUnit.toEntity(): UnitEntity = UnitEntity(
     id = id,
     factionId = factionId,
     name = name,

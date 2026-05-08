@@ -15,7 +15,7 @@ import com.rosterforge.wh40k.domain.model.ModelScope
 import com.rosterforge.wh40k.domain.model.PointsCost
 import com.rosterforge.wh40k.domain.model.Stratagem
 import com.rosterforge.wh40k.domain.model.StratagemType
-import com.rosterforge.wh40k.domain.model.Unit
+import com.rosterforge.wh40k.domain.model.Unit as DomainUnit
 import com.rosterforge.wh40k.domain.model.UnitStats
 import com.rosterforge.wh40k.domain.model.WargearChoice
 import com.rosterforge.wh40k.domain.model.WargearConstraints
@@ -58,7 +58,7 @@ class BsXmlParser @Inject constructor() {
         val warnings = mutableListOf<String>()
         val factions = mutableListOf<Faction>()
         val detachments = mutableListOf<Detachment>()
-        val units = mutableListOf<Unit>()
+        val units = mutableListOf<DomainUnit>()
         val enhancements = mutableListOf<Enhancement>()
         val stratagems = mutableListOf<Stratagem>()
         var sharedEntries: Map<String, BsNode> = emptyMap()
@@ -167,7 +167,7 @@ class BsXmlParser @Inject constructor() {
             .associateBy { it.attrs["id"]!! }
         val combinedShared = sharedEntries + localShared
 
-        val units = mutableListOf<Unit>()
+        val units = mutableListOf<DomainUnit>()
         val stratagems = mutableListOf<Stratagem>()
         val detachments = mutableListOf<Detachment>()
         val enhancements = mutableListOf<Enhancement>()
@@ -295,7 +295,7 @@ class BsXmlParser @Inject constructor() {
         entry: BsNode,
         factionId: String,
         shared: Map<String, BsNode>,
-    ): Unit? {
+    ): DomainUnit? {
         val id = entry.attrs["id"] ?: return null
         val name = entry.attrs["name"] ?: return null
         val cats = categoryNames(entry)
@@ -368,7 +368,7 @@ class BsXmlParser @Inject constructor() {
         val totalMin = modelGroups.sumOf { it.minCount }
         val totalMax = modelGroups.sumOf { it.maxCount }
 
-        return Unit(
+        return DomainUnit(
             id = id,
             factionId = factionId,
             name = name,

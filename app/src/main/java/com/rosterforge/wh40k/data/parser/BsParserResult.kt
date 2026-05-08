@@ -4,13 +4,13 @@ import com.rosterforge.wh40k.domain.model.Detachment
 import com.rosterforge.wh40k.domain.model.Enhancement
 import com.rosterforge.wh40k.domain.model.Faction
 import com.rosterforge.wh40k.domain.model.Stratagem
-import com.rosterforge.wh40k.domain.model.Unit
+import com.rosterforge.wh40k.domain.model.Unit as DomainUnit
 
 /** Aggregated parser output ready to be inserted into the local database. */
 data class BsParserResult(
     val factions: List<Faction>,
     val detachments: List<Detachment>,
-    val units: List<Unit>,
+    val units: List<DomainUnit>,
     val enhancements: List<Enhancement>,
     val stratagems: List<Stratagem>,
     val warnings: List<String>,
@@ -58,7 +58,7 @@ data class GameSystemParseResult(
 data class CatalogueParseResult(
     val faction: com.rosterforge.wh40k.domain.model.Faction?,
     val detachments: List<com.rosterforge.wh40k.domain.model.Detachment>,
-    val units: List<com.rosterforge.wh40k.domain.model.Unit>,
+    val units: List<DomainUnit>,
     val enhancements: List<com.rosterforge.wh40k.domain.model.Enhancement>,
     val stratagems: List<com.rosterforge.wh40k.domain.model.Stratagem>,
 )

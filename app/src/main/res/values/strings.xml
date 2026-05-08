@@ -1,0 +1,51 @@
+<resources>
+    <string name="app_name">Roster Forge 40K</string>
+
+    <!-- Home -->
+    <string name="home_title">Roster Forge 40K</string>
+    <string name="home_section_rosters">Your Rosters</string>
+    <string name="home_empty_title">No rosters yet</string>
+    <string name="home_empty_subtitle">Build your first army to get started.</string>
+    <string name="home_new_roster">New Roster</string>
+
+    <!-- Create Roster -->
+    <string name="create_title">New Roster</string>
+    <string name="create_name_label">Roster Name</string>
+    <string name="create_points_label">Points Limit</string>
+    <string name="create_faction_label">Faction</string>
+    <string name="create_continue">Continue</string>
+
+    <!-- Build -->
+    <string name="build_validate">Validate</string>
+    <string name="build_add_unit">Add Unit</string>
+    <string name="build_view_roster">View Roster</string>
+    <string name="build_stratagems">Stratagems</string>
+
+    <!-- View -->
+    <string name="view_share">Share</string>
+    <string name="view_export">Export</string>
+
+    <!-- Validation -->
+    <string name="validation_legal">Roster is legal</string>
+    <string name="validation_errors">Roster has errors</string>
+
+    <!-- Stratagems -->
+    <string name="stratagems_title">Stratagems</string>
+    <string name="stratagems_search_hint">Search stratagems</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_data_section">Data</string>
+    <string name="settings_appearance_section">Appearance</string>
+    <string name="settings_about_section">About</string>
+    <string name="settings_check_updates">Check for Updates</string>
+
+    <!-- Common -->
+    <string name="action_back">Back</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_duplicate">Duplicate</string>
+    <string name="action_rename">Rename</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_done">Done</string>
+    <string name="action_save">Save</string>
+</resources>

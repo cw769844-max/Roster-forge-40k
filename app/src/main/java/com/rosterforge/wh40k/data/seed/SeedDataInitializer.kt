@@ -40,10 +40,10 @@ class SeedDataInitializer @Inject constructor(
         database.withTransaction {
             factionDao.deleteAll()
             factionDao.insertAll(seed.factions.map { it.toEntity() })
-            detachmentDao.insertAll(seed.detachments.map { it.toEntity() })
-            unitDao.insertAll(seed.units.map { it.toEntity() })
-            enhancementDao.insertAll(seed.enhancements.map { it.toEntity() })
-            stratagemDao.insertAll(seed.stratagems.map { it.toEntity() })
+            detachmentDao.insertAll(seed.allDetachments.map { it.toEntity() })
+            unitDao.insertAll(seed.allUnits.map { it.toEntity() })
+            enhancementDao.insertAll(seed.allEnhancements.map { it.toEntity() })
+            stratagemDao.insertAll(seed.allStratagems.map { it.toEntity() })
         }
         settings.setInstalledDataVersion("sample-data")
         settings.setInstalledDataDate(System.currentTimeMillis())

@@ -125,6 +125,10 @@ dependencies {
     androidTestImplementation(libs.kotlinx.coroutines.test)
 }
 
+ksp {
+    arg("room.schemaLocation", "$projectDir/schemas")
+}
+
 tasks.withType<Test> {
     useJUnitPlatform()
 }
